@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>custom-element-type</title>
+    <script src="./index.js" defer></script>
+</head>
+<body>
+    <h1>custom-element-type</h1>
+    <h2>Autonomous custom elements(自主定义元素)</h2>
+    <div>Autonomous custom elements 是独立的元素，它不继承其他内建的HTML元素。可以直接把它们写成HTML标签的形式，在页面上使用。</div>
+    <div>可以直接使用 custom-element-type 标签，或者 document.createElement("custom-element-type")。</div>
+    <custom-element></custom-element>
+
+    <h2>Customized built-in elements(内置定制元素)</h2>
+    <div>Customized built-in elements 继承自基本的HTML元素。在创建时，必须指定所需扩展的元素，使用时需先写出基本的元素标签，并通过 is 属性指定custom element的名称。</div>
+    <div>例如 p is="built-in-element", 或者 document.createElement("p", { is: "built-in-element" })。</div>
+    <div>只能一种显示方式，虽然下面写了 2 种</div>
+    <built-in-element></built-in-element>
+    <div is="built-in-element"></div>
+</body>
+</html>
