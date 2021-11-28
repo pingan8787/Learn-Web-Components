@@ -8,24 +8,26 @@
  */
 
 class CustomElementLifeCycle extends HTMLElement {
-    constructor(){
+    constructor() {
         super();
         this.render();
     }
-    render(){
-        // 获取组件的属性
-        const userName = this.getAttribute('user-name');
-
-        const shadow = this.attachShadow({mode: 'open'});
-        const text = document.createElement('span');
-        text.textContent = 'Hi Custom Element Attribute!Current user is ' + userName;
-        text.style = 'color: red';
-        shadow.append(text);
+    // 指定观察到的属性，attributeChangedCallback 会起作用
+    static get observedAttributes() {
+        return ['my-color', 'my-width']
+    }
+    render() {
+        const shadow = this.attachShadow({ mode: 'open' });
+        const div = document.createElement('div');
+        const style = document.createElement('style');
+        shadow.appendChild(div);
+        shadow.appendChild(style);
     }
 
 
     connectedCallback() {
         console.log('[connectedCallback]元素被添加');
+        updateStyle(this);
     }
 
     disconnectedCallback() {
@@ -37,25 +39,63 @@ class CustomElementLifeCycle extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        console.log('[attributeChangedCallback]元素属性发生变化：',name, oldValue, newValue);
-    }
-}
-
-const init = () => {
-    const remove = document.getElementById('remove-button');
-    const change = document.getElementById('change-button');
-    const elem = document.querySelector('custom-element-life-cycle');
-    remove.onclick = function(){
-        elem.remove()
-    }
-    change.onclick = function(){
-        elem.setAttribute('user-name', 'leo')
-        elem.setAttribute('current-name', 'leo')
+        console.log('[attributeChangedCallback]元素属性发生变化：', name, oldValue, newValue);
+        updateStyle(this);
     }
 }
 
 customElements.define('custom-element-life-cycle', CustomElementLifeCycle)
 
-window.onload = function (){
+const updateStyle = elem => {
+    const shadow = elem.shadowRoot;
+    const width = elem.getAttribute('my-width');
+    const color = elem.getAttribute('my-color');
+    shadow.querySelector('style').textContent = `
+        div {
+            width: ${width}px;
+            height: ${width}px;
+            background-color: ${color};
+        }
+    `;
+}
+
+const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+
+const init = () => {
+    const create = document.getElementById('create-button');
+    const change = document.getElementById('change-button');
+    const remove = document.getElementById('remove-button');
+
+    let square; // 存放方块元素
+
+    change.disabled = true;
+    remove.disabled = true;
+
+    create.onclick = () => {
+        square = document.createElement('custom-element-life-cycle');
+        square.setAttribute('my-width', random(50, 300));
+        square.setAttribute('my-color', 'red');
+        document.body.appendChild(square);
+
+        create.disabled = true;
+        change.disabled = false;
+        remove.disabled = false;
+    }
+
+    change.onclick = () => {
+        square.setAttribute('my-width', random(100, 300));
+        square.setAttribute('my-color', `rgb(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)})`);
+    }
+
+    remove.onclick = () => {
+        document.body.removeChild(square);
+        create.disabled = false;
+        change.disabled = true;
+        remove.disabled = true;
+    }
+}
+
+
+window.onload = function () {
     init();
 }
