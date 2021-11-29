@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shadow-dom-style</title>
+    <style>
+        .shadow-div-1 {
+            color: red;
+        }
+        .shadow-div-2 {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h2>1. 外部无法通过类选择器改变 Shadow DOM 内元素样式</h2>
+    <div class="shadow-host-1"></div>
+    <div class="shadow-div-1">shadow-div-1 节点</div>
+    <script>
+        const shadowHost1 = document.querySelector('.shadow-host-1');
+        const shadowRoot1 = shadowHost1.attachShadow({mode: 'closed'})
+        const shadowDiv1 = document.createElement('div');
+        shadowDiv1.classList.add('shadow-div-1');
+        shadowDiv1.innerText = '新的子节点'
+        shadowRoot1.appendChild(shadowDiv1)
+    </script>
+
+    <h2>2. Shadow Host 元素上的样式能够被继承</h2>
+    <div class="shadow-host-2" style="color: green"></div>
+    <div class="shadow-div-2">shadow-div-2 节点</div>
+    <script>
+        const shadowHost2 = document.querySelector('.shadow-host-2');
+        const shadowRoot2 = shadowHost2.attachShadow({mode: 'closed'})
+        const shadowDiv2 = document.createElement('div');
+        shadowDiv2.classList.add('shadow-div-2');
+        shadowDiv2.innerText = '新的子节点'
+        shadowRoot2.appendChild(shadowDiv2)
+    </script>
+</body>
+</html>

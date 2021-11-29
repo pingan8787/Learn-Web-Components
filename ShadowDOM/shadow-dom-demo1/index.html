@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shadow-dom-demo1</title>
+</head>
+<body>
+    <h2>1. 空的 shadow-host</h2>
+    <div class="shadow-host-1"></div>
+    <script>
+        const shadowHost1 = document.querySelector('.shadow-host-1');
+        const shadowRoot1 = shadowHost1.attachShadow({mode: 'closed'})
+    </script>
+
+
+    <h2>2. 为 shadow-host 空节点添加子节点</h2>
+    <div class="shadow-host-2"></div>
+    <script>
+        const shadowHost2 = document.querySelector('.shadow-host-2');
+        const shadowRoot2 = shadowHost2.attachShadow({mode: 'closed'});
+        const shadowDiv2 = document.createElement('div');
+        shadowDiv2.classList.add('shadow-div');
+        shadowDiv2.innerText = '新的子节点'
+        shadowRoot2.appendChild(shadowDiv2)
+    </script>
+
+
+    <h2>3. 替换 shadow-host 子节点</h2>
+    <div class="shadow-host-3">
+        <div>我是 shadow-host-3 的子节点</div>
+    </div>
+    <button id="ShadowHost3">替换 shadow-host-3</button>
+    <script>
+        const ShadowHostButton3 = document.querySelector('#ShadowHost3');
+        ShadowHostButton3.onclick = function(){
+            const shadowHost3 = document.querySelector('.shadow-host-3');
+            const shadowRoot3 = shadowHost3.attachShadow({mode: 'closed'});
+            const shadowDiv3 = document.createElement('div');
+            shadowDiv3.classList.add('shadow-div');
+            shadowDiv3.innerText = '新的子节点';
+            shadowRoot3.appendChild(shadowDiv3);
+        }
+    </script>
+</body>
+</html>
