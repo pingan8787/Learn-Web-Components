@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>templates-slots-demo1</title>
+    <script src="./index.js"></script>
+</head>
+
+<body>
+    <h2>Templates Demo1</h2>
+    <template id="template1">
+        <p>第一个 Templates</p>
+    </template>
+    <script>
+        const template = document.querySelector('#template1');
+        const templateContent = template.content;
+        document.body.appendChild(templateContent);
+    </script>
+
+    <h2>Web Components 中使用模版</h2>
+    <template id="template2">
+        <style>
+            p {
+                color: aquamarine;
+                background-color: burlywood;
+            }
+        </style>
+        <p>第二个 Templates</p>
+    </template>
+    <template-demo2></template-demo2>
+
+    <h2>Web Components 中使用 slot</h2>
+    <template id="template3">
+        <style>
+            p {
+                color: aquamarine;
+                background-color: burlywood;
+            }
+        </style>
+        <p>第三个 Templates</p>
+        <p>这边是个插槽：<slot name="default-slot-1">默认值</slot></p>
+    </template>
+    <template-demo3>
+        <span slot="default-slot-1">使用新的插槽内容</span>
+    </template-demo3>
+    <template-demo3>
+        <ul slot="default-slot-1">
+            <li>这是另一个 slot</li>
+            <li>包含了多个元素</li>
+        </ul>
+    </template-demo3>
+</body>
+
+</html>
