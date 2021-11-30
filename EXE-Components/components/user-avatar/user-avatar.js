@@ -1,5 +1,7 @@
+import { getAttributes } from '../../utils/index.js';
+
 const defaultConfig = {
-    name: "",
+    userName: "",
     avatarWidth: "40px",
     avatarRadius: "50%",
     buttonRadius: "6px"
@@ -23,7 +25,7 @@ export default class EXEUserAvatar extends HTMLElement {
 
     renderHTML() {
         // 当前业务暂时不需要 slot
-        const { name, avatarWidth, avatarRadius, buttonRadius } = defaultConfig;
+        const { userName, avatarWidth, avatarRadius, buttonRadius } = this.config;
         return `
             <style>
                 :host{
@@ -72,7 +74,7 @@ export default class EXEUserAvatar extends HTMLElement {
                 </div>
                 <div class="exe-avatar-text">
                     <div class="name">
-                        <span class="name-text">${name}</span>
+                        <span class="name-text">${userName}</span>
                         <span class="user-attach">勋章1</span>
                     </div>
                     <div class="text">福建省厦门市思明区</div>
@@ -91,18 +93,16 @@ export default class EXEUserAvatar extends HTMLElement {
     }
 
     updateStyle() {
-        this._name && (this.config.name = this._name);
-        this._width && (this.config.avatarWidth = this._width);
-        this._button_radius && (this.config.buttonRadius = this._button_radius);
+        this.config = {...defaultConfig, ...getAttributes(this)}; // 合并配置
         this.shadowRoot.innerHTML = this.renderHTML();
     }
 
-    get _name() {
-        return this.getAttribute('e-name');
+    get _user_name() {
+        return this.getAttribute('e-user-name');
     }
 
-    get _width() {
-        return this.getAttribute('e-width');
+    get _avatar_width() {
+        return this.getAttribute('e-avatar-width');
     }
 
     get _button_radius() {

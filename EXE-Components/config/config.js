@@ -1,0 +1,1 @@
+export const ComponentFlag = 'e-';  // 组件库元素标签的 Flag 
