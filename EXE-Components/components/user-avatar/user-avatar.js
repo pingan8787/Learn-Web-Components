@@ -1,10 +1,21 @@
 import { getAttributes } from '../../utils/index.js';
+import { isFun, isStr, warpFun, runFun } from '../../utils/utils.js';
 
 const defaultConfig = {
+    // 属性
+    userAvatar: "./assets/images/default_avatar.png",
     userName: "",
+    subName: "",
     avatarWidth: "40px",
     avatarRadius: "50%",
-    buttonRadius: "6px"
+    buttonRadius: "6px",
+    buttonColor: "#999",
+    buttonText: "打开",
+    disableButton: false,
+
+    // 事件
+    onAvatarClick: null,
+    onButtonClick: null,
 }
 
 export default class EXEUserAvatar extends HTMLElement {
@@ -25,7 +36,10 @@ export default class EXEUserAvatar extends HTMLElement {
 
     renderHTML() {
         // 当前业务暂时不需要 slot
-        const { userName, avatarWidth, avatarRadius, buttonRadius } = this.config;
+        const { 
+            userName, avatarWidth, avatarRadius, buttonRadius, 
+            userAvatar, buttonColor, subName, buttonText, disableButton
+        } = this.config;
         return `
             <style>
                 :host{
@@ -44,7 +58,7 @@ export default class EXEUserAvatar extends HTMLElement {
                     width: 100%;
                     height: 100%;
                     border-radius: ${avatarRadius};
-                    border: 1px solid #aaa;
+                    border: 1px solid #efe7e7;
                 }
                 .exe-avatar-text {
                     font-size: 14px;
@@ -58,9 +72,9 @@ export default class EXEUserAvatar extends HTMLElement {
                     display: flex;
                     align-items: center;
                 }
-                .exe-avatar-button .follow {
-                    border: 1px solid #999;
-                    color: #999;
+                .exe-avatar-button .button {
+                    border: 1px solid ${buttonColor};
+                    color: ${buttonColor};
                     font-size: 12px;
                     text-align: center;
                     padding: 4px 10px;
@@ -70,18 +84,26 @@ export default class EXEUserAvatar extends HTMLElement {
             </style>
             <div class="exe-avatar">
                 <div class="exe-avatar-img">
-                    <img class="img" src="https://up.enterdesk.com/edpic_360_360/b1/c3/6f/b1c36fcf1c10cb1dfbd26f96c3f74fd3.jpg" />
+                    <img class="img" src="${userAvatar}" />
                 </div>
                 <div class="exe-avatar-text">
                     <div class="name">
                         <span class="name-text">${userName}</span>
-                        <span class="user-attach">勋章1</span>
+                        <span class="user-attach">
+                            <slot name="name-slot"></slot>
+                        </span>
                     </div>
-                    <div class="text">福建省厦门市思明区</div>
+                    <div class="text">
+                    <span>${subName}</span>
+                    <span><slot name="sub-name-slot"></slot></span>
+                    </div>
                 </div>
-                <div class="exe-avatar-button">
-                    <div class="follow">关注</div>
-                </div>
+                ${
+                    !disableButton && `<div class="exe-avatar-button">
+                        <div class="button">${buttonText}</div>
+                    </div>`
+                }
+
             </div>
         `
     }
@@ -90,6 +112,19 @@ export default class EXEUserAvatar extends HTMLElement {
     connectedCallback() {
         console.log('[connectedCallback]');
         this.updateStyle();
+        this.initEventListen();
+    }
+
+    initEventListen() {
+        const { onAvatarClick, onButtonClick } = this.config;
+        if(isStr(onAvatarClick)){
+            this.addEventListener('click', e => runFun(e, onAvatarClick));
+        }
+
+        if(isStr(onButtonClick)){
+            this.buttonElem = this.shadowRoot.querySelector('.exe-avatar-button .button');
+            this.buttonElem?.addEventListener('click', e => runFun(e, onButtonClick));
+        }
     }
 
     updateStyle() {

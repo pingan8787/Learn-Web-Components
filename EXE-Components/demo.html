@@ -6,12 +6,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EXE Components Demo</title>
     <script type="module" src="../components/index.js"></script>
+    <style>
+        .medal-item img{
+            width: 16px;
+            height: 16px;
+        }
+    </style>
 </head>
 <body>
     <h2>1. exe-user-avatar</h2>
     <h3>默认样式</h3>
     <exe-user-avatar></exe-user-avatar>
+
+    <hr>
+
     <h3>支持传参</h3>
-    <exe-user-avatar e-user-name="草莽" e-avatar-width="30px" e-button-radius="20px"></exe-user-avatar>
+    <exe-user-avatar 
+        e-user-avatar="./testAssets/images/avatar-1.png"
+        e-user-name="王平安"
+        e-sub-name="福建省厦门市思明区"
+        e-avatar-width="36px"
+        e-button-radius="8px"
+        e-button-color="#5fce79"
+        e-button-text="关注"
+
+    >
+    </exe-user-avatar>
+
+    <hr>
+
+    <h3>支持插槽</h3>
+    <exe-user-avatar 
+        e-user-avatar="./testAssets/images/avatar-1.png"
+        e-user-name="王平安"
+        e-sub-name="福建省厦门市思明区"
+        e-avatar-width="36px"
+        e-button-radius="8px"
+        e-button-color="#5fce79"
+        e-button-text="关注"
+    >
+    <span slot="name-slot">
+        <span class="medal-item"><img src="./testAssets/images/medal-1.png"></span>
+        <span class="medal-item"><img src="./testAssets/images/medal-2.png"></span>
+        <span class="medal-item"><img src="./testAssets/images/medal-3.png"></span>
+        <span class="medal-item"><img src="./testAssets/images/medal-4.png"></span>
+    </span>
+    <span slot="sub-name-slot">
+        <span class="medal-item"><img src="./testAssets/images/medal-3.png"></span>
+        <span class="medal-item"><img src="./testAssets/images/medal-4.png"></span>
+    </span>
+    </exe-user-avatar>
+
+    <hr>
+
+    <h3>支持事件绑定</h3>
+    <exe-user-avatar 
+        e-user-avatar="./testAssets/images/avatar-1.png"
+        e-user-name="王平安"
+        e-sub-name="福建省厦门市思明区"
+        e-avatar-width="36px"
+        e-button-radius="8px"
+        e-button-color="#5fce79"
+        e-button-text="关注"
+        on-avatar-click="avatarClick()"
+        on-button-click="buttonClick()"
+    >
+    </exe-user-avatar>
+    <script>
+        const avatarClick = () => alert('点击头像及空白区域');
+        const buttonClick = () => alert('点击关注按钮');
+    </script>
 </body>
 </html>
