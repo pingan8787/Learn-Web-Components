@@ -1,6 +1,10 @@
-参考：https://github.com/XboxYan/xy-ui/
 
-本地开发，安装 [http-server](https://github.com/http-party/http-server) 方便调试：
+# EXE-Components
+
+使用 Web Components 技术开发 EXE 组件库，脱离前端框架。
+
+## 本地开发
+克隆项目以后，可以使用 [http-server](https://github.com/http-party/http-server) 方便调试：
 ```bash
 npm install http-server -g
 
@@ -8,10 +12,6 @@ http-server -c-1 -p 1400
 ```
 
 添加 `-c-1` 是为了禁用缓存，详细可以看 [http-server 文档](https://github.com/http-party/http-server)。
-
-# EXE-Components
-
-使用 Web Components 技术开发 EXE 组件库，脱离前端框架。
 
 ## 使用
 
@@ -143,16 +143,16 @@ http-server -c-1 -p 1400
     e-button-color="#5fce79"
     e-button-text="关注"
 >
-<span slot="name-slot">
-    <span class="medal-item"><img src="./testAssets/images/medal-1.png"></span>
-    <span class="medal-item"><img src="./testAssets/images/medal-2.png"></span>
-    <span class="medal-item"><img src="./testAssets/images/medal-3.png"></span>
-    <span class="medal-item"><img src="./testAssets/images/medal-4.png"></span>
-</span>
-<span slot="sub-name-slot">
-    <span class="medal-item"><img src="./testAssets/images/medal-3.png"></span>
-    <span class="medal-item"><img src="./testAssets/images/medal-4.png"></span>
-</span>
+    <span slot="name-slot">
+        <span class="medal-item"><img src="./testAssets/images/medal-1.png"></span>
+        <span class="medal-item"><img src="./testAssets/images/medal-2.png"></span>
+        <span class="medal-item"><img src="./testAssets/images/medal-3.png"></span>
+        <span class="medal-item"><img src="./testAssets/images/medal-4.png"></span>
+    </span>
+    <span slot="sub-name-slot">
+        <span class="medal-item"><img src="./testAssets/images/medal-3.png"></span>
+        <span class="medal-item"><img src="./testAssets/images/medal-4.png"></span>
+    </span>
 </exe-user-avatar>
 
 <hr>
@@ -172,3 +172,7 @@ http-server -c-1 -p 1400
 >
 </exe-user-avatar>
 ```
+
+
+## 参考内容
+- [xy-ui](https://github.com/XboxYan/xy-ui/)
