@@ -46,6 +46,7 @@ export const warpFun = fnStr => {
  * @param {function} fn 
  */
 export const runFun = ($event, fn) => {
+    if(!fn) return;
     $event.stopPropagation();
     $event.preventDefault();
     isStr(fn) && (fn = warpFun(fn));
