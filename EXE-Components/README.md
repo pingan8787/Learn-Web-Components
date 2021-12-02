@@ -1,13 +1,15 @@
 
 # EXE-Components
 
-使用 Web Components 技术开发 EXE 组件库，脱离前端框架。
+使用 [Web Components](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components) 技术开发 EXE 组件库，脱离前端框架。
 
 ## 本地开发
 克隆项目以后，可以使用 [http-server](https://github.com/http-party/http-server) 方便调试：
 ```bash
+# 全局安装 http-server
 npm install http-server -g
 
+# 禁用 http-server 缓存
 http-server -c-1 -p 1400
 ```
 
@@ -175,4 +177,11 @@ http-server -c-1 -p 1400
 
 
 ## 参考内容
+- [Web Components](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components)
 - [xy-ui](https://github.com/XboxYan/xy-ui/)
+
+## 拓展阅读
+1. [Lit - Simple. Fast. Web Components.](https://lit.dev/)
+2. [WEBCOMPONENTS.ORG Discuss & share web components](https://www.webcomponents.org/)
+3. [Web Components as Technology](https://dzone.com/articles/web-components-as-technology)
+4. [Stenciljs - Build. Customize. Distribute. Adopt.](https://stenciljs.com/)
