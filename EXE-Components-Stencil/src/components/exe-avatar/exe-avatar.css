@@ -1,0 +1,10 @@
+:host {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.exe-avatar {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #efe7e7;
+}
