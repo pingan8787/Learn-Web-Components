@@ -1,4 +1,4 @@
-import './e-attachments-list/index.js';
-import './e-comment-footer/index.js';
-import './e-post-list/index.js';
-import './e-user-avatar/index.js';
+import './exe-attachment-list/index.js';
+import './exe-comment-footer/index.js';
+import './exe-post-list/index.js';
+import './exe-user-avatar/index.js';
