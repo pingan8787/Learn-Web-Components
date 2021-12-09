@@ -26,7 +26,7 @@ export default class EXEAvatar extends HTMLElement {
     }
 
     render() {
-        this.shadowRoot = this.attachShadow({mode: 'open'});
+        this.shadowRoot = this.attachShadow({mode: 'closed'});
         this.shadowRoot.innerHTML = renderTemplate(this.config);
     }
 

@@ -11,8 +11,16 @@ export default config => {
                 border-radius: ${buttonRadius};
                 cursor: pointer;
                 display: inline-block;
+                background-color: #FFF;
+            }
+            :host([disabled]) .exe-button,:host([loading]) .exe-button{ 
+                cursor: not-allowed; 
+                pointer-events: all; 
+                border: 1px solid #D6D6D6;
+                color: #ABABAB;
+                background-color: #EEE;
             }
         </style>
-        <div class="exe-button">${buttonText}</div>
+        <button class="exe-button">${buttonText}</button>
     `
 }

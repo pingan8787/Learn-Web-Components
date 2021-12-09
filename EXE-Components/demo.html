@@ -27,6 +27,13 @@
         e-button-text="关注"
     ></exe-button>
 
+    <exe-button
+        e-button-radius="8px"
+        e-button-color="#5fce79"
+        e-button-text="禁用"
+        disabled="disabled"
+    ></exe-button>
+
     <hr>
 
     <h3>支持事件绑定</h3>
@@ -34,6 +41,14 @@
         e-button-radius="8px"
         e-button-color="#5fce79"
         e-button-text="关注"
+        on-avatar-click="avatarClick()"
+        on-button-click="buttonClick()"
+    ></exe-button>
+    <exe-button
+        e-button-radius="8px"
+        e-button-color="#5fce79"
+        e-button-text="禁用"
+        disabled="disabled"
         on-avatar-click="avatarClick()"
         on-button-click="buttonClick()"
     ></exe-button>

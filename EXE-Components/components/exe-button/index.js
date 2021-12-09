@@ -27,7 +27,7 @@ export default class EXEButton extends HTMLElement {
     }
 
     render() {
-        this.shadowRoot = this.attachShadow({mode: 'open'});
+        this.shadowRoot = this.attachShadow({mode: 'closed'});
         this.shadowRoot.innerHTML = renderTemplate(this.config);
     }
 
@@ -44,8 +44,12 @@ export default class EXEButton extends HTMLElement {
     initEventListen() {
         const { onButtonClick } = this.config;
         if(isStr(onButtonClick)){
-            this.addEventListener('click', e => runFun(e, onButtonClick));
+            this.addEventListener('click', e => !this.disabled && runFun(e, onButtonClick));
         }
+    }
+
+    get disabled () {
+        return this.getAttribute('disabled') !== null;
     }
 }
 
