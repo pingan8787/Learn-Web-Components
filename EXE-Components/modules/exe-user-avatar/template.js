@@ -5,7 +5,7 @@ const { renderAttrStr } = Shared;
 export default config => {
     const { 
         userName, avatarWidth, avatarRadius, buttonRadius, 
-        avatarSrc, buttonColor, subName, buttonText, disableButton,
+        avatarSrc, buttonType = 'primary', subName, buttonText, disableButton,
         onAvatarClick, onButtonClick
     } = config;
     return `
@@ -53,7 +53,7 @@ export default config => {
                 `<exe-button
                     ${renderAttrStr({
                         'e-button-radius' : buttonRadius,
-                        'e-button-color' : buttonColor,
+                        'e-button-type' : buttonType,
                         'e-button-text' : buttonText,
                         'on-avatar-click' : onAvatarClick,
                         'on-button-click' : onButtonClick,

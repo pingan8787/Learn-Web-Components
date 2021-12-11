@@ -7,7 +7,7 @@ const { isStr, runFun } = Utils;
 const defaultConfig = {
     // 属性
     buttonRadius: "6px",
-    buttonColor: "#999",
+    buttonPrimary: "default",
     buttonText: "打开",
     disableButton: false,
 
@@ -18,6 +18,11 @@ const defaultConfig = {
 const Selector = "exe-button";
 
 export default class EXEButton extends HTMLElement {
+
+    static get observedAttributes() { 
+        return ['e-button-type','e-button-text', 'buttonType', 'buttonText']
+    }
+
     shadowRoot = null;
     config = defaultConfig;
 
@@ -28,7 +33,6 @@ export default class EXEButton extends HTMLElement {
 
     render() {
         this.shadowRoot = this.attachShadow({mode: 'closed'});
-        this.shadowRoot.innerHTML = renderTemplate(this.config);
     }
 
     connectedCallback() {
@@ -36,20 +40,34 @@ export default class EXEButton extends HTMLElement {
         this.initEventListen();
     }
 
+    attributeChangedCallback (name, oldValue, newValue) {
+        console.log('属性变化', name)
+    }
+
     updateStyle() {
         this.config = {...defaultConfig, ...getAttributes(this)};
+        console.log('config', this.config)
         this.shadowRoot.innerHTML = renderTemplate(this.config);
     }
 
     initEventListen() {
         const { onButtonClick } = this.config;
         if(isStr(onButtonClick)){
-            this.addEventListener('click', e => !this.disabled && runFun(e, onButtonClick));
+            const canClick = !this.disabled && !this.loading
+            this.addEventListener('click', e => canClick && runFun(e, onButtonClick));
         }
     }
 
     get disabled () {
         return this.getAttribute('disabled') !== null;
+    }
+
+    get type () {
+        return this.getAttribute('type') !== null;
+    }
+
+    get loading () {
+        return this.getAttribute('loading') !== null;
     }
 }
 

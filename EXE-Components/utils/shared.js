@@ -12,6 +12,7 @@ export const getAttributes = elem => {
     if(!elem) return {};
     const attrs = {};
     const attrSource = Object.values(elem.attributes);
+    
     attrSource &&
     attrSource.length > 0 &&
     attrSource.forEach(ele => {
@@ -39,6 +40,6 @@ export const renderAttrStr = attrs => {
     const keys = Object.keys(attrs);
     return keys.length > 0 && 
     keys.reduce((pre, cur) => 
-        attrs[cur] ? pre + `${cur}="${attrs[cur]}" ` : ''
+        pre + (attrs[cur] ? `${cur}="${attrs[cur]}" ` : '')
     , '')
 }

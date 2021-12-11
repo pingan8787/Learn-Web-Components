@@ -12,15 +12,28 @@ const demos = [
                 html: 
 `<exe-button
     e-button-radius="8px"
-    e-button-color="#5fce79"
+    e-button-type="primary"
     e-button-text="关注"
 ></exe-button>
 
 <exe-button
     e-button-radius="8px"
-    e-button-color="#5fce79"
+    e-button-type="primary"
     e-button-text="禁用"
     disabled="disabled"
+></exe-button>
+
+<exe-button
+    e-button-radius="8px"
+    e-button-type="primary"
+    e-button-text="loading"
+    loading="loading"
+></exe-button>
+
+<exe-button
+    e-button-radius="8px"
+    e-button-type="primary"
+    e-button-text="dashed"
 ></exe-button>`
             },
             {
@@ -28,14 +41,14 @@ const demos = [
                 html: 
 `<exe-button
     e-button-radius="8px"
-    e-button-color="#5fce79"
+    e-button-type="primary"
     e-button-text="关注"
     on-avatar-click="avatarClick()"
     on-button-click="buttonClick()"
 ></exe-button>
 <exe-button
     e-button-radius="8px"
-    e-button-color="#5fce79"
+    e-button-type="primary"
     e-button-text="禁用"
     disabled="disabled"
     on-avatar-click="avatarClick()"
@@ -89,7 +102,7 @@ const demos = [
     e-avatar-width="36px"
     e-avatar-radius="8px"
     e-button-radius="8px"
-    e-button-color="#5fce79"
+    e-button-type="primary"
     e-button-text="关注"
 >
 </exe-user-avatar>`
@@ -104,7 +117,7 @@ const demos = [
     e-avatar-width="36px"
     e-avatar-radius="8px"
     e-button-radius="8px"
-    e-button-color="#5fce79"
+    e-button-type="primary"
     e-button-text="关注"
 >
 <span slot="name-slot">
@@ -129,7 +142,7 @@ const demos = [
     e-avatar-width="36px"
     e-avatar-radius="8px"
     e-button-radius="8px"
-    e-button-color="#5fce79"
+    e-button-type="primary"
     e-button-text="关注"
     on-avatar-click="avatarClick()"
     on-button-click="buttonClick()"
@@ -146,7 +159,7 @@ const renderItems = items => {
         const { title, html } = item;
         result += `
 <div class="demo-item">
-<div class="demo-title"><i class="demo-icon"></i>${title}</div>
+<div class="demo-title"><i class="demo-icon"></i><span>${title}</span></div>
 <div class="demo-code-title">使用示例：</div>
 ${html}
 <div class="demo-code">

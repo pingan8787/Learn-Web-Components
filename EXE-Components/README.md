@@ -36,7 +36,7 @@ http-server -c-1 -p 1400
 ```html
 <exe-button
     e-button-radius="8px"
-    e-button-color="#5fce79"
+    e-button-type="primary"
     e-button-text="关注"
 ></exe-button>
 ```
@@ -63,7 +63,7 @@ http-server -c-1 -p 1400
 <h3>支持参数</h3>
 <exe-button
     e-button-radius="8px"
-    e-button-color="#5fce79"
+    e-button-type="primary"
     e-button-text="关注"
 ></exe-button>
 
@@ -72,7 +72,7 @@ http-server -c-1 -p 1400
 <h3>支持事件绑定</h3>
 <exe-button
     e-button-radius="8px"
-    e-button-color="#5fce79"
+    e-button-type="primary"
     e-button-text="关注"
     on-avatar-click="avatarClick()"
     on-button-click="buttonClick()"
@@ -131,7 +131,7 @@ http-server -c-1 -p 1400
     e-avatar-width="36px"
     e-avatar-radius="8px"
     e-button-radius="8px"
-    e-button-color="#5fce79"
+    e-button-type="primary"
     e-button-text="关注"
 >
 </exe-user-avatar>
@@ -146,7 +146,7 @@ http-server -c-1 -p 1400
     e-avatar-width="36px"
     e-avatar-radius="8px"
     e-button-radius="8px"
-    e-button-color="#5fce79"
+    e-button-type="primary"
     e-button-text="关注"
 >
     <span slot="name-slot">
@@ -171,7 +171,7 @@ http-server -c-1 -p 1400
     e-avatar-width="36px"
     e-avatar-radius="8px"
     e-button-radius="8px"
-    e-button-color="#5fce79"
+    e-button-type="primary"
     e-button-text="关注"
     on-avatar-click="avatarClick()"
     on-button-click="buttonClick()"
