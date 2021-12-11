@@ -1,0 +1,13 @@
+{
+  "name": "EXE-Components",
+  "version": "1.0.0",
+  "description": "使用 [Web Components](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components) 技术开发 EXE 组件库，脱离前端框架。",
+  "main": "demo.js",
+  "scripts": {
+    "dev": "http-server -c-1 -p 1400",
+    "build": "rollup index.js --file exe-components.js --format iife"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

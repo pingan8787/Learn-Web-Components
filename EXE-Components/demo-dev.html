@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXE Components Demo</title>
+    <link rel="stylesheet" href="./testAssets/highlight/styles/github-dark.min.css">
+    <script src="./testAssets/highlight/highlight.min.js"></script>
+    <script src="./demo.js"></script>
+    <script type="module" src="./index.js"></script>
+    <style>
+        .page-title {
+            font-size: 30px;
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+        }
+        .medal-item img{
+            width: 16px;
+            height: 16px;
+        }
+        .demo-item {
+            width: 320px;
+            height: 280px;
+            padding: 16px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 16px;
+            transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            overflow: auto;
+            border-radius: 3px;
+            box-shadow: 0 10px 40px -10px rgb(0 64 128 / 20%);
+            position: relative;
+            top: 0;
+        }
+        .demo-item:hover {
+            box-shadow: 0 10px 40px -10px rgb(0 64 128 / 40%);
+            top: -2px;
+        }
+        .demo-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .demo-code-title {
+            font-size: 14px;
+            margin-top: 6px;
+        }
+        .demo-icon {
+            width: 8px;
+            height: 8px;
+            display: inline-block;
+            border-radius: 50%;
+            margin-right: 6px;
+            background-color: #2E94B9;
+        }
+        pre {
+            margin-top: 6px;
+        }
+        pre code {
+            overflow: auto;
+            cursor: text;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-title">EXE Components 组件库演示</div>
+    <div id="root"></div>
+
+    <script>
+        const avatarClick = () => alert("点击头像及空白区域");
+        const buttonClick = () => alert("点击关注按钮");
+    </script>
+<script>
+</script>
+</body>
+</html>

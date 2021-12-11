@@ -5,144 +5,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EXE Components Demo</title>
-    <script type="module" src="./exe-components.js"></script>
+    <link rel="stylesheet" href="./testAssets/highlight/styles/github-dark.min.css">
+    <script src="./testAssets/highlight/highlight.min.js"></script>
+    <script src="./demo.js"></script>
+    <script src="./exe-components.js"></script>
     <style>
+        .page-title {
+            font-size: 30px;
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+        }
         .medal-item img{
             width: 16px;
             height: 16px;
         }
+        .demo-item {
+            width: 320px;
+            height: 280px;
+            padding: 16px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 16px;
+            transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            overflow: auto;
+            border-radius: 3px;
+            box-shadow: 0 10px 40px -10px rgb(0 64 128 / 20%);
+            position: relative;
+            top: 0;
+        }
+        .demo-item:hover {
+            box-shadow: 0 10px 40px -10px rgb(0 64 128 / 40%);
+            top: -2px;
+        }
+        .demo-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .demo-code-title {
+            font-size: 14px;
+            margin-top: 6px;
+        }
+        .demo-icon {
+            width: 8px;
+            height: 8px;
+            display: inline-block;
+            border-radius: 50%;
+            margin-right: 6px;
+            background-color: #2E94B9;
+        }
+        pre {
+            margin-top: 6px;
+        }
+        pre code {
+            overflow: auto;
+            cursor: text;
+        }
+
     </style>
 </head>
 <body>
-    <h2>1. 单一组件：exe-button</h2>
-    <h3>默认样式</h3>
-    <exe-button></exe-button>
+    <div class="page-title">EXE Components 组件库演示</div>
+    <div id="root"></div>
 
-    <hr>
-
-    <h3>支持参数</h3>
-    <exe-button
-        e-button-radius="8px"
-        e-button-color="#5fce79"
-        e-button-text="关注"
-    ></exe-button>
-
-    <exe-button
-        e-button-radius="8px"
-        e-button-color="#5fce79"
-        e-button-text="禁用"
-        disabled="disabled"
-    ></exe-button>
-
-    <hr>
-
-    <h3>支持事件绑定</h3>
-    <exe-button
-        e-button-radius="8px"
-        e-button-color="#5fce79"
-        e-button-text="关注"
-        on-avatar-click="avatarClick()"
-        on-button-click="buttonClick()"
-    ></exe-button>
-    <exe-button
-        e-button-radius="8px"
-        e-button-color="#5fce79"
-        e-button-text="禁用"
-        disabled="disabled"
-        on-avatar-click="avatarClick()"
-        on-button-click="buttonClick()"
-    ></exe-button>
-
-    <hr>
-
-    <h2>2. 单一组件：exe-avatar</h2>
-    <h3>默认样式</h3>
-    <exe-avatar></exe-avatar>
-
-    <hr>
-
-    <h3>支持参数</h3>
-    <exe-avatar
-        e-avatar-src="./testAssets/images/avatar-1.png"
-        e-avatar-width="52px"
-        e-avatar-radius="22px"
-    ></exe-avatar>
-
-    <hr>
-
-    <h3>支持事件绑定</h3>
-    <exe-avatar
-        e-avatar-src="./testAssets/images/avatar-1.png"
-        e-avatar-width="52px"
-        e-avatar-radius="22px"
-        on-avatar-click="avatarClick()"
-    ></exe-avatar>
-
-    <hr>
-
-    <h2>3. 组合组件：exe-user-avatar</h2>
-    <h3>默认样式</h3>
-    <exe-user-avatar></exe-user-avatar>
-
-    <hr>
-
-    <h3>支持传参</h3>
-    <exe-user-avatar 
-        e-user-name="王平安"
-        e-sub-name="福建省厦门市思明区"
-        e-avatar-src="./testAssets/images/avatar-1.png"
-        e-avatar-width="36px"
-        e-avatar-radius="8px"
-        e-button-radius="8px"
-        e-button-color="#5fce79"
-        e-button-text="关注"
-    >
-    </exe-user-avatar>
-
-    <hr>
-
-    <h3>支持插槽</h3>
-    <exe-user-avatar 
-        e-user-name="王平安"
-        e-sub-name="福建省厦门市思明区"
-        e-avatar-src="./testAssets/images/avatar-1.png"
-        e-avatar-width="36px"
-        e-avatar-radius="8px"
-        e-button-radius="8px"
-        e-button-color="#5fce79"
-        e-button-text="关注"
-    >
-    <span slot="name-slot">
-        <span class="medal-item"><img src="./testAssets/images/medal-1.png"></span>
-        <span class="medal-item"><img src="./testAssets/images/medal-2.png"></span>
-        <span class="medal-item"><img src="./testAssets/images/medal-3.png"></span>
-        <span class="medal-item"><img src="./testAssets/images/medal-4.png"></span>
-    </span>
-    <span slot="sub-name-slot">
-        <span class="medal-item"><img src="./testAssets/images/medal-3.png"></span>
-        <span class="medal-item"><img src="./testAssets/images/medal-4.png"></span>
-    </span>
-    </exe-user-avatar>
-
-    <hr>
-
-    <h3>支持事件绑定</h3>
-    <exe-user-avatar 
-        e-user-name="王平安"
-        e-sub-name="福建省厦门市思明区"
-        e-avatar-src="./testAssets/images/avatar-1.png"
-        e-avatar-width="36px"
-        e-avatar-radius="8px"
-        e-button-radius="8px"
-        e-button-color="#5fce79"
-        e-button-text="关注"
-        on-avatar-click="avatarClick()"
-        on-button-click="buttonClick()"
-    >
-    </exe-user-avatar>
     <script>
-        const avatarClick = () => alert('点击头像及空白区域');
-        const buttonClick = () => alert('点击关注按钮');
+        const avatarClick = () => alert("点击头像及空白区域");
+        const buttonClick = () => alert("点击关注按钮");
     </script>
+<script>
+</script>
 </body>
 </html>

@@ -15,6 +15,10 @@ http-server -c-1 -p 1400
 
 添加 `-c-1` 是为了禁用缓存，详细可以看 [http-server 文档](https://github.com/http-party/http-server)。
 
+测试环境有 3 个 demo 入口：
+- `demo.html`：正式环境 demo 入口页，执行 `npm run build` 后部署时使用；
+- `demo-dev.html`：测试环境 demo 入口页，执行 `npm run dev` 开发模式时使用；
+
 ## 使用
 
 ### 1. 引入组件库
