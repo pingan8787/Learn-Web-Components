@@ -11,8 +11,6 @@ const buttonTypeMap = {
 export default config => {
     const { buttonRadius, buttonText, buttonType } = config;
 
-    console.log('[按钮config]', config)
-
     const borderStyleCSS = buttonType 
         && borderStyle[buttonType] 
         ? borderStyle[buttonType] 

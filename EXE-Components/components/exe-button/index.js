@@ -41,12 +41,11 @@ export default class EXEButton extends HTMLElement {
     }
 
     attributeChangedCallback (name, oldValue, newValue) {
-        console.log('属性变化', name)
+        // console.log('属性变化', name)
     }
 
     updateStyle() {
         this.config = {...defaultConfig, ...getAttributes(this)};
-        console.log('config', this.config)
         this.shadowRoot.innerHTML = renderTemplate(this.config);
     }
 
