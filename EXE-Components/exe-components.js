@@ -103,6 +103,7 @@
         if(!elem) return {};
         const attrs = {};
         const attrSource = Object.values(elem.attributes);
+        
         attrSource &&
         attrSource.length > 0 &&
         attrSource.forEach(ele => {
@@ -130,7 +131,7 @@
         const keys = Object.keys(attrs);
         return keys.length > 0 && 
         keys.reduce((pre, cur) => 
-            attrs[cur] ? pre + `${cur}="${attrs[cur]}" ` : ''
+            pre + (attrs[cur] ? `${cur}="${attrs[cur]}" ` : '')
         , '')
     };
 
@@ -192,27 +193,57 @@
         customElements.define(Selector$1, EXEAvatar);
     }
 
+    const borderStyle = {
+        solid: 'solid',
+        dashed: 'dashed'
+    };
+
+    const buttonTypeMap = {
+        default: { textColor: '#222', bgColor: '#FFF', borderColor: '#222'},
+        primary: { textColor: '#FFF', bgColor: '#5FCE79', borderColor: '#5FCE79'},
+        text: { textColor: '#222', bgColor: '#FFF', borderColor: '#FFF'},
+    };
+
     var renderTemplate$1 = config => {
-        const { buttonRadius, buttonColor, buttonText } = config;
+        const { buttonRadius, buttonText, buttonType } = config;
+
+        const borderStyleCSS = buttonType 
+            && borderStyle[buttonType] 
+            ? borderStyle[buttonType] 
+            : borderStyle['solid'];
+
+        const backgroundCSS = buttonType 
+            && buttonTypeMap[buttonType] 
+            ? buttonTypeMap[buttonType] 
+            : buttonTypeMap['default'];
+
         return `
         <style>
             .exe-button {
-                border: 1px solid ${buttonColor};
-                color: ${buttonColor};
+                border: 1px ${borderStyleCSS} ${backgroundCSS.borderColor};
+                color: ${backgroundCSS.textColor};
+                background-color: ${backgroundCSS.bgColor};
                 font-size: 12px;
                 text-align: center;
                 padding: 4px 10px;
                 border-radius: ${buttonRadius};
                 cursor: pointer;
                 display: inline-block;
-                background-color: #FFF;
+                height: 28px;
             }
-            :host([disabled]) .exe-button,:host([loading]) .exe-button{ 
+            :host([disabled]) .exe-button{ 
                 cursor: not-allowed; 
                 pointer-events: all; 
                 border: 1px solid #D6D6D6;
                 color: #ABABAB;
                 background-color: #EEE;
+            }
+            :host([loading]) .exe-button{ 
+                cursor: not-allowed; 
+                pointer-events: all; 
+                border: 1px solid #D6D6D6;
+                color: #ABABAB;
+                background-color: #F9F9F9;
             }
         </style>
         <button class="exe-button">${buttonText}</button>
@@ -225,7 +256,7 @@
     const defaultConfig$1 = {
         // 属性
         buttonRadius: "6px",
-        buttonColor: "#999",
+        buttonPrimary: "default",
         buttonText: "打开",
         disableButton: false,
 
@@ -236,6 +267,11 @@
     const Selector = "exe-button";
 
     class EXEButton extends HTMLElement {
+
+        static get observedAttributes() { 
+            return ['e-button-type','e-button-text', 'buttonType', 'buttonText']
+        }
+
         shadowRoot = null;
         config = defaultConfig$1;
 
@@ -246,12 +282,15 @@
 
         render() {
             this.shadowRoot = this.attachShadow({mode: 'closed'});
-            this.shadowRoot.innerHTML = renderTemplate$1(this.config);
         }
 
         connectedCallback() {
             this.updateStyle();
             this.initEventListen();
+        }
+
+        attributeChangedCallback (name, oldValue, newValue) {
+            // console.log('属性变化', name)
         }
 
         updateStyle() {
@@ -262,12 +301,21 @@
         initEventListen() {
             const { onButtonClick } = this.config;
             if(isStr$1(onButtonClick)){
-                this.addEventListener('click', e => !this.disabled && runFun$1(e, onButtonClick));
+                const canClick = !this.disabled && !this.loading;
+                this.addEventListener('click', e => canClick && runFun$1(e, onButtonClick));
             }
         }
 
         get disabled () {
             return this.getAttribute('disabled') !== null;
+        }
+
+        get type () {
+            return this.getAttribute('type') !== null;
+        }
+
+        get loading () {
+            return this.getAttribute('loading') !== null;
         }
     }
 
@@ -322,7 +370,7 @@
     var renderTemplate = config => {
         const { 
             userName, avatarWidth, avatarRadius, buttonRadius, 
-            avatarSrc, buttonColor, subName, buttonText, disableButton,
+            avatarSrc, buttonType = 'primary', subName, buttonText, disableButton,
             onAvatarClick, onButtonClick
         } = config;
         return `
@@ -333,6 +381,7 @@
             }
             .exe-user-avatar {
                 display: flex;
+                margin: 4px 0;
             }
             .exe-user-avatar-text {
                 font-size: 14px;
@@ -341,8 +390,20 @@
             .exe-user-avatar-text .text {
                 color: #666;
             }
+            .exe-user-avatar-text .text span {
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+                overflow: hidden;
+            }
             exe-avatar {
                 margin-right: 12px;
+                width: ${avatarWidth};
+            }
+            exe-button {
+                width: 60px;
+                display: flex;
+                justify-content: end;
             }
         </style>
         <div class="exe-user-avatar">
@@ -361,8 +422,7 @@
                     </span>
                 </div>
                 <div class="text">
-                <span>${subName}</span>
-                <span><slot name="sub-name-slot"></slot></span>
+                    <span class="name">${subName}<slot name="sub-name-slot"></slot></span>
                 </div>
             </div>
             ${
@@ -370,7 +430,7 @@
                 `<exe-button
                     ${renderAttrStr({
                         'e-button-radius' : buttonRadius,
-                        'e-button-color' : buttonColor,
+                        'e-button-type' : buttonType,
                         'e-button-text' : buttonText,
                         'on-avatar-click' : onAvatarClick,
                         'on-button-click' : onButtonClick,
@@ -409,7 +469,6 @@
 
         render() {
             this.shadowRoot = this.attachShadow({mode: 'open'});
-            this.shadowRoot.innerHTML = renderTemplate(this.config);
         }
 
         connectedCallback() {
