@@ -4,8 +4,9 @@ const borderStyle = {
 }
 
 const buttonTypeMap = {
-    default: { textColor: '#222', bgColor: '#FFF'},
-    primary: { textColor: '#FFF', bgColor: '#5FCE79'},
+    default: { textColor: '#222', bgColor: '#FFF', borderColor: '#222'},
+    primary: { textColor: '#FFF', bgColor: '#5FCE79', borderColor: '#5FCE79'},
+    text: { textColor: '#222', bgColor: '#FFF', borderColor: '#FFF'},
 }
 
 export default config => {
@@ -24,7 +25,7 @@ export default config => {
     return `
         <style>
             .exe-button {
-                border: 1px ${borderStyleCSS} ${backgroundCSS.bgColor};
+                border: 1px ${borderStyleCSS} ${backgroundCSS.borderColor};
                 color: ${backgroundCSS.textColor};
                 background-color: ${backgroundCSS.bgColor};
                 font-size: 12px;
@@ -35,13 +36,19 @@ export default config => {
                 display: inline-block;
                 height: 28px;
             }
-            :host([disabled]) .exe-button,
-            :host([loading]) .exe-button{ 
+            :host([disabled]) .exe-button{ 
                 cursor: not-allowed; 
                 pointer-events: all; 
                 border: 1px solid #D6D6D6;
                 color: #ABABAB;
                 background-color: #EEE;
+            }
+            :host([loading]) .exe-button{ 
+                cursor: not-allowed; 
+                pointer-events: all; 
+                border: 1px solid #D6D6D6;
+                color: #ABABAB;
+                background-color: #F9F9F9;
             }
         </style>
         <button class="exe-button">${buttonText}</button>

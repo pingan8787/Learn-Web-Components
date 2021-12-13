@@ -1,0 +1,14 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_NO_SCRIPT",
+    "err": {
+      "name": "pnpm",
+      "message": "Missing script: test",
+      "code": "ERR_PNPM_NO_SCRIPT",
+      "stack": "pnpm: Missing script: test\n    at Object.handler (/usr/local/lib/node_modules/pnpm/dist/pnpm.cjs:129762:15)\n    at async /usr/local/lib/node_modules/pnpm/dist/pnpm.cjs:133927:20\n    at async run (/usr/local/lib/node_modules/pnpm/dist/pnpm.cjs:133902:34)\n    at async runPnpm (/usr/local/lib/node_modules/pnpm/dist/pnpm.cjs:134113:5)\n    at async /usr/local/lib/node_modules/pnpm/dist/pnpm.cjs:134105:7"
+    }
+  }
+}

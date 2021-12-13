@@ -16,6 +16,7 @@ export default config => {
             }
             .exe-user-avatar {
                 display: flex;
+                margin: 4px 0;
             }
             .exe-user-avatar-text {
                 font-size: 14px;
@@ -24,8 +25,20 @@ export default config => {
             .exe-user-avatar-text .text {
                 color: #666;
             }
+            .exe-user-avatar-text .text span {
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+                overflow: hidden;
+            }
             exe-avatar {
                 margin-right: 12px;
+                width: ${avatarWidth};
+            }
+            exe-button {
+                width: 60px;
+                display: flex;
+                justify-content: end;
             }
         </style>
         <div class="exe-user-avatar">
@@ -44,8 +57,7 @@ export default config => {
                     </span>
                 </div>
                 <div class="text">
-                <span>${subName}</span>
-                <span><slot name="sub-name-slot"></slot></span>
+                    <span class="name">${subName}<slot name="sub-name-slot"></slot></span>
                 </div>
             </div>
             ${
