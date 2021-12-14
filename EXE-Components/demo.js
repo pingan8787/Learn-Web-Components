@@ -10,11 +10,12 @@ const users = [
 
 // 测试生成用户列表模版
 const usersTemp = () => {
-    let temp = '';
+    let temp = '', code = '';
     users.forEach(item => {
         const {name, desc, level, avatar, home} = item;
         temp += 
-`<exe-user-avatar 
+`
+<exe-user-avatar 
     e-user-name="${name}"
     e-sub-name="${desc}"
     e-avatar-src="./testAssets/images/users/${avatar}"
@@ -25,15 +26,24 @@ const usersTemp = () => {
     on-button-click="toUserFollow('${name}')"
 >
 ${
-    level >= 0 && 
-    `<span slot="name-slot">
+    level >= 0 && `    <span slot="name-slot">
         <span class="medal-item">（Lv${level}）</span>
-    </span>`
-}
-    
-</exe-user-avatar>`
+    </span>`}
+</exe-user-avatar>
+`
+        code += `
+${JSON.stringify(item)}`
     })
 
+    temp = `
+<script>
+/*
+测试数据如下：
+${code}
+*/
+</script>
+${temp}
+    `
     return temp;
 }
 
@@ -241,7 +251,7 @@ const demos = [
         items: [
             {
                 title: '用户列表',
-                html: usersTemp()
+                html: `${usersTemp()}`
             },
         ]
     }
@@ -252,8 +262,13 @@ const renderItems = items => {
     items.forEach(item => {
         const { title, html } = item;
         result += `
-<div class="demo-item">
-    <div class="demo-title"><i class="demo-icon"></i><span>${title}</span></div>
+<div class="demo-item" id="${title}">
+    <div class="demo-title">
+        <i class="demo-icon"></i>
+        <span>${title}</span>
+        <img src="./testAssets/images/open-full.png" class="open-full" title="打开弹框" onclick="showFixedCard('#${title}')"/>
+        <img src="./testAssets/images/close-full.png" class="close-full" title="关闭弹框" onclick="showFixedCard('#${title}')"/>
+    </div>
     <div class="demo-code-title">使用示例：</div>
     ${html}
     <div class="demo-code">
