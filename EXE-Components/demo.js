@@ -74,11 +74,13 @@ const demos = [
         items: [
             {
                 title: '默认样式',
+                key: 11,
                 html: 
 `<exe-button></exe-button>`
             },
             {
                 title: '支持参数',
+                key: 12,
                 html: 
 `<exe-button
     e-button-radius="8px"
@@ -114,6 +116,7 @@ const demos = [
             },
             {
                 title: '支持事件绑定',
+                key: 13,
                 html: 
 `<exe-button
     e-button-radius="8px"
@@ -143,10 +146,12 @@ const demos = [
         items: [
             {
                 title: '默认样式',
+                key: 21,
                 html: `<exe-avatar></exe-avatar>`
             },
             {
                 title: '支持参数',
+                key: 22,
                 html: 
 `<exe-avatar
     e-avatar-src="./testAssets/images/avatar-1.png"
@@ -156,6 +161,7 @@ const demos = [
             },
             {
                 title: '支持事件绑定',
+                key: 23,
                 html: 
 `<exe-avatar
     e-avatar-src="./testAssets/images/avatar-1.png"
@@ -184,10 +190,12 @@ const demos = [
         items: [
             {
                 title: '默认样式',
+                key: 31,
                 html: `<exe-user-avatar></exe-user-avatar>`
             },
             {
                 title: '支持传参',
+                key: 32,
                 html: 
 `<exe-user-avatar 
     e-user-name="王平安"
@@ -203,6 +211,7 @@ const demos = [
             },
             {
                 title: '支持插槽',
+                key: 33,
                 html: 
 `<exe-user-avatar 
     e-user-name="王平安"
@@ -228,6 +237,7 @@ const demos = [
             },
             {
                 title: '支持事件绑定',
+                key: 34,
                 html: 
 `<exe-user-avatar 
     e-user-name="王平安"
@@ -251,6 +261,7 @@ const demos = [
         items: [
             {
                 title: '用户列表',
+                key: 41,
                 html: `${usersTemp()}`
             },
         ]
@@ -260,14 +271,15 @@ const demos = [
 const renderItems = items => {
     let result = '';
     items.forEach(item => {
-        const { title, html } = item;
+        const { title, html, key } = item;
+        const contentKey = title + '_' + key;
         result += `
-<div class="demo-item" id="${title}">
+<div class="demo-item" id="${contentKey}">
     <div class="demo-title">
         <i class="demo-icon"></i>
         <span>${title}</span>
-        <img src="./testAssets/images/open-full.png" class="open-full" title="打开弹框" onclick="showFixedCard('#${title}')"/>
-        <img src="./testAssets/images/close-full.png" class="close-full" title="关闭弹框" onclick="showFixedCard('#${title}')"/>
+        <img src="./testAssets/images/open-full.png" class="open-full" title="打开弹框" onclick="showFixedCard('#${contentKey}')"/>
+        <img src="./testAssets/images/close-full.png" class="close-full" title="关闭弹框" onclick="showFixedCard('#${contentKey}')"/>
     </div>
     <div class="demo-code-title">使用示例：</div>
     ${html}
