@@ -2,6 +2,10 @@
 
 学习资料：[Web Components](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components)
 
+
+
+EXE Components 最终效果：[https://blog.pingan8787.com/exe-components/demo.html](https://blog.pingan8787.com/exe-components/demo.html)  
+
 - [使用 custom elements](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_custom_elements)
 - [使用 shadow DOM](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_shadow_DOM)
 - [使用 templates and slots](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_templates_and_slots)

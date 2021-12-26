@@ -3,6 +3,9 @@
 
 使用 [Web Components](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components) 技术开发 EXE 组件库，脱离前端框架。
 
+> 最终效果：[https://blog.pingan8787.com/exe-components/demo.html](https://blog.pingan8787.com/exe-components/demo.html)  
+> 仓库地址：[https://github.com/pingan8787/Learn-Web-Components](https://github.com/pingan8787/Learn-Web-Components)
+
 ## 本地开发
 克隆项目以后，可以使用 [http-server](https://github.com/http-party/http-server) 方便调试：
 ```bash
